@@ -1,10 +1,26 @@
+import { Route, Routes } from "react-router-dom"
+import { Layout } from "./components/layout"
+import { HomePage } from "./pages/home-page"
+import { AbouteUsPage } from "./pages/aboute-us-page"
+import { ContactsPage } from "./pages/contacts-page"
+import { NotFoundPage } from "./pages/not-found-page"
+import { paths } from "./service/route-service/paths"
 
 
 function App() {
 
+  const { HomePath, ContactsPath, AbouteUsPath, NotFoundPath } = paths
+
   return (
     <>
-    <h1>Online shop</h1>
+      <Routes>
+        <Route path={HomePath} element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path={AbouteUsPath} element={<AbouteUsPage />} />
+          <Route path={ContactsPath} element={<ContactsPage />} />
+          <Route path={NotFoundPath} element={<NotFoundPage />} />
+        </Route>
+      </Routes>
     </>
   )
 }
