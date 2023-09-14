@@ -3,10 +3,9 @@ const ContactsPath = 'contacts'
 const AbouteUsPath = 'aboute-us'
 const NotFoundPath = '*'
 
-export const paths = { HomePath, ContactsPath, AbouteUsPath, NotFoundPath }
+const paths = { HomePath, ContactsPath, AbouteUsPath, NotFoundPath }
 
-
-export const routes = [
+const routes = [
     {
         label: 'Home',
         path: `${HomePath}`
@@ -20,3 +19,5 @@ export const routes = [
         path: `/${AbouteUsPath}`
     }
 ]
+
+export { routes, paths }

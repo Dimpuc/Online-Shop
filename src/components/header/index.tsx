@@ -27,6 +27,7 @@ const Header = () => {
         >
           {routes.map(({ label, path }) => (
             <ListItem
+              key={path}
               sx={{
                 margin: 0,
                 maxWidth: " max-content",

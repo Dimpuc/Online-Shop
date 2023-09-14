@@ -1,15 +1,13 @@
-import { Route, Routes } from "react-router-dom"
-import { Layout } from "./components/layout"
-import { HomePage } from "./pages/home-page"
-import { AbouteUsPage } from "./pages/aboute-us-page"
-import { ContactsPage } from "./pages/contacts-page"
-import { NotFoundPage } from "./pages/not-found-page"
-import { paths } from "./service/route-service/paths"
-
+import { Route, Routes } from "react-router-dom";
+import { Layout } from "./components/layout";
+import { HomePage } from "./pages/home-page";
+import { AbouteUsPage } from "./pages/aboute-us-page";
+import { ContactsPage } from "./pages/contacts-page";
+import { NotFoundPage } from "./pages/not-found-page";
+import { paths } from "./service/route-service/paths";
 
 function App() {
-
-  const { HomePath, ContactsPath, AbouteUsPath, NotFoundPath } = paths
+  const { HomePath, ContactsPath, AbouteUsPath, NotFoundPath } = paths;
 
   return (
     <>
@@ -22,7 +20,7 @@ function App() {
         </Route>
       </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
