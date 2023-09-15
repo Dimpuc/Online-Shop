@@ -11,9 +11,9 @@ const ProductsList = () => {
       sx={{
         display: "flex",
         flexWrap: "wrap",
-        justifyContent: "center",
         gap: "10px",
         maxWidth: "1490px",
+        padding: 0,
         width: "100%",
       }}
     >
