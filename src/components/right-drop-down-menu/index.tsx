@@ -1,14 +1,16 @@
-import { Backdrop, Box, Icon, IconButton, Typography } from "@mui/material";
+import { Backdrop, Box, useTheme } from "@mui/material";
 import { FC } from "react";
-import CloseIcon from "@mui/icons-material/Close";
-import DirectionsBoatIcon from "@mui/icons-material/DirectionsBoat";
-import { Dialog } from '@mui/material';
-interface RightDropDownMenuProps {
+
+import { Navigation } from "./navigation";
+import { DropDownHeader } from "./drop-down-header";
+
+interface DropDownMenuProps {
   onClose: () => void;
   open: boolean;
 }
 
-const RightDropDownMenu: FC<RightDropDownMenuProps> = ({ onClose, open }) => {
+const DropDownMenu: FC<DropDownMenuProps> = ({ onClose, open }) => {
+  const { palette } = useTheme();
   return (
     <>
       <Box
@@ -21,65 +23,28 @@ const RightDropDownMenu: FC<RightDropDownMenuProps> = ({ onClose, open }) => {
           width: "100%",
           height: "100vh",
           top: 0,
-          transition: "all 5s ease-in-out",
-          left: open ? "0px" : "-300px",
-          backgroundColor: "white",
+          transition: "0.5s",
+          transform: open ? "translateX(0%)" : "translateX(-100%)",
+          backgroundColor: palette.common.white,
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            padding: "10px",
-            backgroundColor: "#221f1f",
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "flex-end",
-              gap: "15px",
-            }}
-          >
-            <Icon
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <DirectionsBoatIcon
-                sx={{
-                  color: "#03a9f4",
-                  width: "30px",
-                  height: "30px",
-                }}
-              />
-            </Icon>
-            <Typography
-              variant="h3"
-              sx={{
-                textTransform: "uppercase",
-                color: "#fff",
-                letterSpacing: "3px",
-              }}
-            >
-              ishop
-            </Typography>
-          </Box>
-          <IconButton onClick={onClose}>
-            <CloseIcon sx={{ color: "#fff" }} />
-          </IconButton>
-        </Box>
+        <DropDownHeader onClose={onClose} />
+        <Navigation onClose={onClose} />
       </Box>
-      <Backdrop
-        sx={{ color: "#fff", zIndex: 1000 }}
-        open={true}
-        onClick={onClose}
-      />
+      {open && (
+        <Backdrop
+          sx={{
+            color: palette.common.white,
+            zIndex: 1000,
+            transition:
+              "opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0ms !important",
+          }}
+          open={true}
+          onClick={onClose}
+        />
+      )}
     </>
   );
 };
 
-export { RightDropDownMenu };
+export { DropDownMenu };

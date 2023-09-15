@@ -1,4 +1,7 @@
 const Pallette = {
+    secondary: {
+        main: '#221f1f'
+    },
     success: {
         main: '#2e7d32',
         light: '#4caf50',
@@ -15,14 +18,18 @@ const Pallette = {
         dark: '#c62828'
     },
     info: {
-        main: '#0288d1',
-        light: '#03a9f4',
+        main: '#03a9f4',
+        light: '#C9F2F2',
         dark: '#01579b'
     },
     commom: {
         while: '#fff',
         black: '#00000'
-    }
+    },
+    grey: {
+        [300]: "#e9e9e9"
+    },
+
 }
 
 export { Pallette }

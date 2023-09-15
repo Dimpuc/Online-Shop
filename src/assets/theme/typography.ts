@@ -11,6 +11,10 @@ const Typography = {
         fontSize: 16,
         fontWeight: 500,
     },
+    h6: {
+        fontSize: 14,
+        fontWeight: 400,
+    },
     bold: {
         fontSize: 18,
         fontWeight: 700,
