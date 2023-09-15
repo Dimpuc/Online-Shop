@@ -1,50 +1,50 @@
-import { AppBar, List, ListItem, Toolbar, Typography } from "@mui/material";
-import { routes } from "../../service/route-service/paths";
-import { CustomLink } from "../custom-link";
+import { AppBar, IconButton, Toolbar, useTheme } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useEffect, useState } from "react";
+import { DropDownMenu } from "../right-drop-down-menu";
+import "../../index.css";
 
 const Header = () => {
+  const [open, setOpen] = useState(false);
+  const { palette } = useTheme();
+
+  const toggle = () => {
+    setOpen(!open);
+  };
+
+  useEffect(() => {
+    if (open) {
+      document.querySelector(":root")?.classList.add("scroll-block");
+    } else {
+      document.querySelector(":root")?.classList.remove("scroll-block");
+    }
+  }, [open]);
+
   return (
-    <AppBar
-      sx={{
-        display: "flex",
-        position: "inherit",
-      }}
-    >
-      <Toolbar
+    <>
+      <AppBar
         sx={{
           display: "flex",
+          position: "inherit",
+          backgroundColor: palette.secondary.main,
         }}
       >
-        <List
+        <Toolbar
           sx={{
             display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "20px",
-            width: "100%",
-            padding: 0,
           }}
         >
-          {routes.map(({ label, path }) => (
-            <ListItem
-              key={path}
+          <IconButton onClick={toggle}>
+            <MenuIcon
               sx={{
-                margin: 0,
-                maxWidth: " max-content",
-                padding: 0,
+                color: palette.common.white,
               }}
-            >
-              <CustomLink
-                to={path}
-                styles={{ color: "white", textDecoration: "none" }}
-              >
-                <Typography>{label}</Typography>
-              </CustomLink>
-            </ListItem>
-          ))}
-        </List>
-      </Toolbar>
-    </AppBar>
+            />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+      <DropDownMenu open={open} onClose={toggle} />
+    </>
   );
 };
 
