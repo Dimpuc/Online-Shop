@@ -3,6 +3,7 @@ import { FC } from "react";
 import styled from "@mui/styled-engine";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import { StarRating } from "../stars-rate";
 interface ProductItemProps {
   id: number;
   image: string;
@@ -51,7 +52,7 @@ const ProductItem: FC<ProductItemProps> = ({
         >
           {title}
         </Typography>
-        <Box>{rate}</Box>
+        <StarRating rate={rate} />
         <Box
           sx={{
             display: "flex",

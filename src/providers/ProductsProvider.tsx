@@ -24,7 +24,9 @@ const ProductProvider: FC<ProductsProviderProps> = ({ children }) => {
 
   useEffect(() => {
     fetchProducts().then((data) => {
-      setProducts(data);
+      if (data) {
+        setProducts(data);
+      }
     });
   }, []);
 
