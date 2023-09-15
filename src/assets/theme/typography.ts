@@ -1,4 +1,8 @@
 const Typography = {
+    h3: {
+        fontSize: 20,
+        fontWeight: 700,
+    },
     h4: {
         fontSize: 18,
         fontWeight: 700,
