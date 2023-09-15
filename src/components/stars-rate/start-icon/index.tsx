@@ -12,7 +12,7 @@ const StarIcon: FC<StarIconProps> = ({ isColorFill = false }) => {
     <StarRateIcon
       sx={{
         fill: `${fillColor(isColorFill)}`,
-        width: "20px",
+        width: "25px",
       }}
     />
   );

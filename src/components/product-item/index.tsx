@@ -1,9 +1,10 @@
-import { Box, Icon, IconButton, Typography } from "@mui/material";
+import { Box, Icon, IconButton, Typography, useTheme } from "@mui/material";
 import { FC } from "react";
 import styled from "@mui/styled-engine";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import { StarRating } from "../stars-rate";
+
 interface ProductItemProps {
   id: number;
   image: string;
@@ -21,6 +22,8 @@ const ProductItem: FC<ProductItemProps> = ({
   count,
   title,
 }) => {
+  const { palette } = useTheme();
+
   return (
     <Box
       sx={{
@@ -40,8 +43,15 @@ const ProductItem: FC<ProductItemProps> = ({
       >
         <StyledMainImage src={image} alt="icon" />
       </Box>
-      <Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+        }}
+      >
         <Typography
+          variant="h4"
           sx={{
             maxWidth: "260px",
             maxHeight: "48px",
@@ -60,9 +70,17 @@ const ProductItem: FC<ProductItemProps> = ({
             justifyContent: "space-between",
           }}
         >
-          <Typography>{`${price}$`}</Typography>
-          <IconButton>
-            <ShoppingCartIcon />
+          <Typography variant="h4">{`${price}$`}</Typography>
+          <IconButton
+            sx={{
+              padding: 0,
+            }}
+          >
+            <AddShoppingCartIcon
+              sx={{
+                color: `${palette.success.light}`,
+              }}
+            />
           </IconButton>
         </Box>
         <Box
@@ -72,10 +90,18 @@ const ProductItem: FC<ProductItemProps> = ({
             gap: "10px",
           }}
         >
-          <Typography>{count ? "Ready to deliver" : ""}</Typography>
+          <Typography
+            variant="h5"
+            sx={{
+              color: `${palette.success.light}`,
+            }}
+          >
+            {count ? "Ready to deliver" : ""}
+          </Typography>
           <Icon
             sx={{
               display: "flex",
+              color: `${palette.success.light}`,
             }}
           >
             <LocalShippingIcon />
