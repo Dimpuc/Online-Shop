@@ -1,5 +1,18 @@
+import { Grid } from "@mui/material";
+import { ProductsList } from "../../components/products-list";
+
 const HomePage = () => {
-  return <div>Home</div>;
+  return (
+    <Grid
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        padding: "20px",
+      }}
+    >
+      <ProductsList />
+    </Grid>
+  );
 };
 
 export { HomePage };
