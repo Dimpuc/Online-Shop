@@ -1,8 +1,7 @@
 import { AppBar, IconButton, Toolbar, useTheme } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { DropDownMenu } from "../right-drop-down-menu";
-import "../../index.css";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -11,14 +10,6 @@ const Header = () => {
   const toggle = () => {
     setOpen(!open);
   };
-
-  useEffect(() => {
-    if (open) {
-      document.querySelector(":root")?.classList.add("scroll-block");
-    } else {
-      document.querySelector(":root")?.classList.remove("scroll-block");
-    }
-  }, [open]);
 
   return (
     <>

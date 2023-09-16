@@ -1,8 +1,9 @@
 import { Backdrop, Box, useTheme } from "@mui/material";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 import { Navigation } from "./navigation";
 import { DropDownHeader } from "./drop-down-header";
+import "../../index.css";
 
 interface DropDownMenuProps {
   onClose: () => void;
@@ -11,6 +12,14 @@ interface DropDownMenuProps {
 
 const DropDownMenu: FC<DropDownMenuProps> = ({ onClose, open }) => {
   const { palette } = useTheme();
+
+  useEffect(() => {
+    if (open) document.querySelector(":root")?.classList.add("scroll-block");
+
+    return () =>
+      document.querySelector(":root")?.classList.remove("scroll-block");
+  }, [open]);
+
   return (
     <>
       <Box
