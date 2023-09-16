@@ -6,14 +6,17 @@ import { ProductProvider } from "./providers/ProductsProvider.tsx";
 import { StrictMode } from "react";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./assets/theme/index.ts";
+import { CartProvider } from "./providers/CartProvider.tsx";
 
 const app = (
   <StrictMode>
     <ThemeProvider theme={theme}>
       <ProductProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <CartProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </CartProvider>
       </ProductProvider>
     </ThemeProvider>
   </StrictMode>

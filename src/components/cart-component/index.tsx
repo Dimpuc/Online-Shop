@@ -3,20 +3,16 @@ import {
   Box,
   Button,
   IconButton,
-  List,
-  ListItem,
   Typography,
   useTheme,
 } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useProduct } from "../../providers/ProductsProvider";
 import CloseIcon from "@mui/icons-material/Close";
 import { CartList } from "./cart-list";
 
 const Cart = () => {
   const { toggle, ModalComponent } = useModal();
   const { palette } = useTheme();
-  const { products } = useProduct();
 
   return (
     <>

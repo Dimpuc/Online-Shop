@@ -4,9 +4,10 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 interface CartListItemProps {
   image: string;
   title: string;
+  quantity: number;
 }
 
-export const CartListItem: FC<CartListItemProps> = ({ image, title }) => {
+export const CartListItem: FC<CartListItemProps> = ({ image, title, quantity }) => {
   return (
     <Box
       sx={{
@@ -60,7 +61,7 @@ export const CartListItem: FC<CartListItemProps> = ({ image, title }) => {
           }}
         >
           <Typography variant="h3">+</Typography>
-          <TextField />
+          <TextField value={quantity} />
           <Typography variant="h3">-</Typography>
         </Box>
         <Typography variant="h4">120$</Typography>

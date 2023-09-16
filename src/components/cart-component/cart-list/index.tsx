@@ -1,16 +1,22 @@
 import { List, ListItem } from "@mui/material";
-import { useProduct } from "../../../providers/ProductsProvider";
 import { CartListItem } from "../cart-list-item";
+import { useCart } from "../../../providers/CartProvider";
 
 const CartList = () => {
-  const { products } = useProduct();
+  const { userCart } = useCart();
+
   return (
     <List>
-      {products.map((p) => (
-        <ListItem>
-          <CartListItem image={p.image} title={p.title} />
-        </ListItem>
-      ))}
+      {userCart &&
+        userCart.products.map((p) => (
+          <ListItem key={p.id}>
+            <CartListItem
+              image={p.image}
+              title={p.title}
+              quantity={p.quantity}
+            />
+          </ListItem>
+        ))}
     </List>
   );
 };
