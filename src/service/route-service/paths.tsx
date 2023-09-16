@@ -6,7 +6,7 @@ import ContactsIcon from "@mui/icons-material/Contacts";
 const HomePath = "/";
 const ContactsPath = "contacts";
 const AbouteUsPath = "aboute-us";
-const СatalogPath = "сatalog";
+const CatalogPath = "сatalog";
 const NotFoundPath = "*";
 
 const paths = {
@@ -14,7 +14,7 @@ const paths = {
   ContactsPath,
   AbouteUsPath,
   NotFoundPath,
-  СatalogPath,
+  CatalogPath,
 };
 
 const routes = [
@@ -24,9 +24,9 @@ const routes = [
     path: `${HomePath}`,
   },
   {
-    label: "Сatalog",
+    label: "Catalog",
     icon: <DashboardCustomizeIcon/>,
-    path: `/${СatalogPath}`,
+    path: `/${CatalogPath}`,
   },
   {
     label: "Contacts",
