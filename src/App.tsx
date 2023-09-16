@@ -5,9 +5,11 @@ import { AbouteUsPage } from "./pages/aboute-us-page";
 import { ContactsPage } from "./pages/contacts-page";
 import { NotFoundPage } from "./pages/not-found-page";
 import { paths } from "./service/route-service/paths";
+import { CatalogPage } from "./pages/catalog-page";
 
 function App() {
-  const { HomePath, ContactsPath, AbouteUsPath, NotFoundPath } = paths;
+  const { HomePath, ContactsPath, AbouteUsPath, NotFoundPath, CatalogPath } =
+    paths;
 
   return (
     <>
@@ -15,6 +17,7 @@ function App() {
         <Route path={HomePath} element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path={AbouteUsPath} element={<AbouteUsPage />} />
+          <Route path={CatalogPath} element={<CatalogPage />} />
           <Route path={ContactsPath} element={<ContactsPage />} />
           <Route path={NotFoundPath} element={<NotFoundPage />} />
         </Route>
