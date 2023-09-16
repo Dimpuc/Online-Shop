@@ -1,4 +1,4 @@
-import { CartInterface, CreateCartInterface, ProductType, UserCartInterface } from "../../types/products.type";
+import { CartInterface, CreateCartInterface, ProductType } from "../../types/products.type";
 import { getRequset, postRequset } from "./requset";
 
 
@@ -19,16 +19,6 @@ const parseCartObject = ({
       quantity,
     },
   ];
-};
-
-const createFakeUser = () => {
-  const id = Math.floor(Math.random() * 100);
-
-  sessionStorage.setItem("sessionID", id.toString());
-
-  return {
-    id,
-  };
 };
 
 
@@ -93,7 +83,7 @@ const createCart = async (body: CreateCartInterface) => {
     const parseData = parseCartObject({
       id: data.products[0].productId,
       quantity: data.products[0].quantity,
-      products: body.allProducts ,
+      products: body.allProducts,
     })
 
     return {
@@ -117,10 +107,5 @@ const getCartById = async (id: number) => {
     console.error(err);
   }
 }
-
-
-
-
-
 
 export { fetchProducts, fetchProductDetails, fetchAllCategories, fetchSpecificProducts, createCart, getCartById };

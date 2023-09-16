@@ -1,19 +1,13 @@
-import {
-  FC,
-  ReactNode,
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import { createCart } from "../service/requset-service/actions";
-import { useProduct } from "./ProductsProvider";
+import { FC, ReactNode, createContext, useContext } from "react";
 import { UserCartInterface } from "../types/products.type";
 import { createFakeUser } from "../service/utils";
+import { useCreateCart } from "../service/hooks/useCreateCart";
 
 interface CartProviderProps {
   children: ReactNode;
 }
+
+const user = null;
 
 const CartContext = createContext<{
   userCart: UserCartInterface | null;
@@ -27,29 +21,7 @@ const CartContext = createContext<{
 export const useCart = () => useContext(CartContext);
 
 const CartProvider: FC<CartProviderProps> = ({ children }) => {
-  const [userCart, setUserCart] = useState<UserCartInterface | null>(null);
-  const { products } = useProduct();
-  const user = null;
-
-  const createCartRequset = ({ id, pid }: { id: number; pid: number }) => {
-    const body = {
-      id, // user.id
-      date: new Date(),
-      products: [
-        {
-          productId: Number(pid),
-          quantity: 1,
-        },
-      ],
-      allProducts: products,
-    };
-
-    createCart(body).then((res) => {
-      if (res) {
-        setUserCart(res);
-      }
-    });
-  };
+  const { userCart, createCartRequset } = useCreateCart();
 
   const handleAddProductToCart = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
