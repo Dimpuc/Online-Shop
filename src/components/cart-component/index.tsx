@@ -1,11 +1,5 @@
 import { useModal } from "../../service/hooks/useModal";
-import {
-  Box,
-  Button,
-  IconButton,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CloseIcon from "@mui/icons-material/Close";
 import { CartList } from "./cart-list";
@@ -33,7 +27,7 @@ const Cart = () => {
             maxHeight: "100%",
             flexDirection: "column",
             backgroundColor: "white",
-            borderRadius: "20px",
+            borderRadius: "8px",
           }}
         >
           <Box
@@ -41,12 +35,19 @@ const Cart = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              height: "57px",
               padding: " 0px 24px",
+              minHeight: "57px",
               borderBottom: "1px solid #e9e9e9",
             }}
           >
-            <Typography>Cart</Typography>
+            <Typography
+              sx={{
+                fontSize: "24px",
+                fontWeight: "700",
+              }}
+            >
+              Cart
+            </Typography>
             <IconButton onClick={toggle}>
               <CloseIcon sx={{ color: palette.secondary.main }} />
             </IconButton>
@@ -61,24 +62,7 @@ const Cart = () => {
               padding: " 24px",
             }}
           >
-            <Box>
-              <CartList />
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  padding: "16px 0px",
-                  position: "sticky",
-                  height: "100px",
-                  backgroundColor: "white",
-                  bottom: "-24px",
-                }}
-              >
-                <Typography>Price</Typography>
-                <Button>Buy</Button>
-              </Box>
-            </Box>
+            <CartList toggle={toggle} />
           </Box>
         </Box>
       </ModalComponent>
