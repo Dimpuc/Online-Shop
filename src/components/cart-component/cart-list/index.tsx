@@ -13,6 +13,7 @@ const CartList = () => {
             <CartListItem
               image={p.image}
               title={p.title}
+              price={p.price}
               quantity={p.quantity}
             />
           </ListItem>

@@ -48,4 +48,38 @@ const postRequset = async <T>({ url, params, body }: PostRequsetProps, axiosConf
     return response.data
 };
 
-export { getRequset, postRequset }
+const putRequset = async <T>({ url, params, body }: PostRequsetProps, axiosConfig?: AxiosRequestConfig): Promise<T> => {
+
+    const requestParams: AxiosRequestConfig = {
+        method: "PUT",
+        data: body,
+        url,
+        params
+    }
+
+    const response = await axios.request({
+        ...requestParams,
+        ...axiosConfig,
+    });
+
+    return response.data
+};
+
+const putchRequset = async <T>({ url, params, body }: PostRequsetProps, axiosConfig?: AxiosRequestConfig): Promise<T> => {
+
+    const requestParams: AxiosRequestConfig = {
+        method: "PATCH",
+        data: body,
+        url,
+        params
+    }
+
+    const response = await axios.request({
+        ...requestParams,
+        ...axiosConfig,
+    });
+
+    return response.data
+};
+
+export { getRequset, postRequset, putRequset, putchRequset }

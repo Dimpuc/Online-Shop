@@ -1,6 +1,9 @@
-import { CartInterface, CreateCartInterface, ProductType } from "../../types/products.type";
-import { getRequset, postRequset } from "./requset";
-
+import {
+  CartInterface,
+  CreateCartInterface,
+  ProductType,
+} from "../../types/products.type";
+import { getRequset, postRequset, putRequset, putchRequset } from "./requset";
 
 const parseCartObject = ({
   id,
@@ -20,7 +23,6 @@ const parseCartObject = ({
     },
   ];
 };
-
 
 const fetchProducts = async () => {
   try {
@@ -46,7 +48,6 @@ const fetchProductDetails = async (id: number) => {
   }
 };
 
-
 const fetchAllCategories = async () => {
   try {
     const data = await getRequset<string[]>({
@@ -57,7 +58,7 @@ const fetchAllCategories = async () => {
   } catch (err) {
     console.error(err);
   }
-}
+};
 
 const fetchSpecificProducts = async (categorie: string) => {
   try {
@@ -69,32 +70,30 @@ const fetchSpecificProducts = async (categorie: string) => {
   } catch (err) {
     console.error(err);
   }
-}
-
+};
 
 const createCart = async (body: CreateCartInterface) => {
   try {
-
     const data = await postRequset<CartInterface>({
       url: `${import.meta.env.VITE_API_URL}/carts`,
-      body
+      body,
     });
 
     const parseData = parseCartObject({
       id: data.products[0].productId,
       quantity: data.products[0].quantity,
       products: body.allProducts,
-    })
+    });
 
     return {
       id: data.id,
       date: data.date,
-      products: parseData
-    }
+      products: parseData,
+    };
   } catch (err) {
     console.error(err);
   }
-}
+};
 
 const getCartById = async (id: number) => {
   try {
@@ -106,6 +105,75 @@ const getCartById = async (id: number) => {
   } catch (err) {
     console.error(err);
   }
-}
+};
 
-export { fetchProducts, fetchProductDetails, fetchAllCategories, fetchSpecificProducts, createCart, getCartById };
+const updatedCart = async ({
+  cartID,
+  body,
+}: {
+  body: CreateCartInterface;
+  cartID: number;
+}) => {
+  try {
+    const data = await putRequset<CartInterface>({
+      url: `${import.meta.env.VITE_API_URL}/carts/${cartID}`,
+      body,
+    });
+
+    const parseData = parseCartObject({
+      id: data.products[0].productId,
+      quantity: data.products[0].quantity,
+      products: body.allProducts,
+    });
+
+    return {
+      id: data.id,
+      date: data.date,
+      products: parseData,
+    };
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const updatedQuantity = async ({
+  cartID,
+  body,
+}: {
+  body: CreateCartInterface;
+  cartID: number;
+}) => {
+  try {
+    const data = await putchRequset<CartInterface>({
+      url: `${import.meta.env.VITE_API_URL}/carts/${cartID}`,
+      body,
+    });
+
+    const parseData = parseCartObject({
+      id: data.products[0].productId,
+      quantity: data.products[0].quantity,
+      products: body.allProducts,
+    });
+
+    console.log(data);
+
+    return {
+      id: data.id,
+      date: data.date,
+      products: parseData,
+    };
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export {
+  fetchProducts,
+  fetchProductDetails,
+  fetchAllCategories,
+  fetchSpecificProducts,
+  createCart,
+  getCartById,
+  updatedCart,
+  updatedQuantity,
+};

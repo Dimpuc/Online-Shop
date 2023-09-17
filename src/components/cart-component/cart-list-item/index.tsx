@@ -5,9 +5,15 @@ interface CartListItemProps {
   image: string;
   title: string;
   quantity: number;
+  price: number;
 }
 
-export const CartListItem: FC<CartListItemProps> = ({ image, title, quantity }) => {
+export const CartListItem: FC<CartListItemProps> = ({
+  image,
+  title,
+  quantity,
+  price,
+}) => {
   return (
     <Box
       sx={{
@@ -64,7 +70,7 @@ export const CartListItem: FC<CartListItemProps> = ({ image, title, quantity }) 
           <TextField value={quantity} />
           <Typography variant="h3">-</Typography>
         </Box>
-        <Typography variant="h4">120$</Typography>
+        <Typography variant="h4">{`${quantity * price}$`}</Typography>
       </Box>
     </Box>
   );

@@ -1,7 +1,7 @@
 import { FC, ReactNode, createContext, useContext } from "react";
 import { UserCartInterface } from "../types/products.type";
 import { createFakeUser } from "../service/utils";
-import { useCreateCart } from "../service/hooks/useCreateCart";
+import { useCreateCart } from "../service/hooks/useCart";
 
 interface CartProviderProps {
   children: ReactNode;
@@ -21,7 +21,7 @@ const CartContext = createContext<{
 export const useCart = () => useContext(CartContext);
 
 const CartProvider: FC<CartProviderProps> = ({ children }) => {
-  const { userCart, createCartRequset } = useCreateCart();
+  const { userCart, createCartRequset, updateCartRequset } = useCreateCart();
 
   const handleAddProductToCart = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -41,6 +41,14 @@ const CartProvider: FC<CartProviderProps> = ({ children }) => {
           pid: Number(pid),
         });
       }
+    } else if (userCart && userCart.id) {
+      const userId = sessionStorage.getItem("sessionID");
+
+      updateCartRequset({
+        cartID: userCart?.id,
+        id: Number(userId),
+        pid: Number(pid),
+      });
     }
   };
 
