@@ -1,12 +1,8 @@
 import { useState } from "react";
 import { ProductType, UserCartInterface } from "../../types/products.type";
 import { useProduct } from "../../providers/ProductsProvider";
-import {
-  createCart,
-  updatedCart,
-  updatedQuantity,
-} from "../requset-service/actions";
 import { useLoader } from "./useLoader";
+import { cartActions } from "../requset-service/cart-actions";
 
 type RequestBody = {
   id: number;
@@ -56,7 +52,7 @@ const useCreateCart = () => {
       products,
     });
 
-    createCart(body).then((res) => {
+    cartActions.createCart(body).then((res) => {
       if (res) {
         setUserCart(res);
         onFinishLoad();
@@ -77,7 +73,7 @@ const useCreateCart = () => {
     });
 
     if (userCart?.products.some((p) => p.id === pid)) {
-      updatedQuantity({ body, cartID }).then((res) => {
+      cartActions.updatedQuantity({ body, cartID }).then((res) => {
         if (res) {
           setUserCart((prev) => {
             if (!prev?.products) return null;
@@ -101,7 +97,8 @@ const useCreateCart = () => {
         }
       });
     } else {
-      updatedCart({ body, cartID })
+      cartActions
+        .updatedCart({ body, cartID })
         .then((res) => {
           if (res) {
             setUserCart((prev) => {
