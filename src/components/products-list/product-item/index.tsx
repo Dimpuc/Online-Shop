@@ -3,8 +3,8 @@ import { FC } from "react";
 import styled from "@mui/styled-engine";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import { StarRating } from "../stars-rate";
-import { useCart } from "../../providers/CartProvider";
+import { StarRating } from "../../stars-rate";
+import { useCart } from "../../../providers/CartProvider";
 
 interface ProductItemProps {
   id: number;

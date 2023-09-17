@@ -1,7 +1,7 @@
 import { List, ListItem } from "@mui/material";
 import { useProduct } from "../../providers/ProductsProvider";
 import { ProductType } from "../../types/products.type";
-import { ProductItem } from "../product-item";
+import { ProductItem } from "./product-item";
 
 const ProductsList = () => {
   const { products } = useProduct();
