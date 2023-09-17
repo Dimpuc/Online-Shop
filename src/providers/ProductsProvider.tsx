@@ -7,11 +7,7 @@ import {
   useState,
 } from "react";
 import { ProductType } from "../types/products.type";
-import {
-  fetchAllCategories,
-  fetchProducts,
-  fetchSpecificProducts,
-} from "../service/requset-service/actions";
+import { productActions } from "../service/requset-service/products-actions";
 
 interface ProductsProviderProps {
   children: ReactNode;
@@ -35,7 +31,7 @@ const ProductProvider: FC<ProductsProviderProps> = ({ children }) => {
   const [categories, setCaregories] = useState<string[]>([]);
 
   useEffect(() => {
-    fetchProducts().then((data) => {
+    productActions.fetchProducts().then((data) => {
       if (data) {
         setProducts(data);
       }
@@ -43,7 +39,7 @@ const ProductProvider: FC<ProductsProviderProps> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    fetchAllCategories().then((data) => {
+    productActions.fetchAllCategories().then((data) => {
       if (data) {
         setCaregories(data);
       }
@@ -56,7 +52,7 @@ const ProductProvider: FC<ProductsProviderProps> = ({ children }) => {
     const categorie = e.currentTarget.value;
 
     if (categorie) {
-      fetchSpecificProducts(categorie).then((data) => {
+      productActions.fetchSpecificProducts(categorie).then((data) => {
         if (data) {
           setProducts(data);
         }

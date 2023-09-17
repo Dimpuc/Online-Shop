@@ -14,10 +14,20 @@ const DropDownMenu: FC<DropDownMenuProps> = ({ onClose, open }) => {
   const { palette } = useTheme();
 
   useEffect(() => {
-    if (open) document.querySelector(":root")?.classList.add("scroll-block");
+    if (open) {
+      const root = document.documentElement;
 
-    return () =>
-      document.querySelector(":root")?.classList.remove("scroll-block");
+      const el = root.getBoundingClientRect();
+
+      root.style.top = `${el.top}px`;
+      root.classList.add("scroll-block");
+    }
+
+    return () => {
+      const root = document.documentElement;
+      root.style.top = '';
+      root.classList.remove("scroll-block");
+    };
   }, [open]);
 
   return (
@@ -30,8 +40,8 @@ const DropDownMenu: FC<DropDownMenuProps> = ({ onClose, open }) => {
           zIndex: 9999,
           maxWidth: "300px",
           width: "100%",
-          height: "100vh",
           top: 0,
+          bottom: 0,
           transition: "0.5s",
           transform: open ? "translateX(0%)" : "translateX(-100%)",
           backgroundColor: palette.common.white,
@@ -44,7 +54,7 @@ const DropDownMenu: FC<DropDownMenuProps> = ({ onClose, open }) => {
         <Backdrop
           sx={{
             color: palette.common.white,
-            zIndex: 1000,
+            zIndex: 5000,
             transition:
               "opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0ms !important",
           }}

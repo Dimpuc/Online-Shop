@@ -25,7 +25,6 @@ const fetchProductDetails = async (id: number) => {
   }
 };
 
-
 const fetchAllCategories = async () => {
   try {
     const data = await getRequset<string[]>({
@@ -36,7 +35,7 @@ const fetchAllCategories = async () => {
   } catch (err) {
     console.error(err);
   }
-}
+};
 
 const fetchSpecificProducts = async (categorie: string) => {
   try {
@@ -48,6 +47,11 @@ const fetchSpecificProducts = async (categorie: string) => {
   } catch (err) {
     console.error(err);
   }
-}
+};
 
-export { fetchProducts, fetchProductDetails, fetchAllCategories, fetchSpecificProducts };
+export const productActions = {
+  fetchProducts,
+  fetchProductDetails,
+  fetchAllCategories,
+  fetchSpecificProducts,
+};

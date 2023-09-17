@@ -4,6 +4,7 @@ import styled from "@mui/styled-engine";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import { StarRating } from "../stars-rate";
+import { useCart } from "../../providers/CartProvider";
 
 interface ProductItemProps {
   id: number;
@@ -23,7 +24,7 @@ const ProductItem: FC<ProductItemProps> = ({
   title,
 }) => {
   const { palette } = useTheme();
-
+  const { handleAddProductToCart } = useCart();
   return (
     <Box
       sx={{
@@ -72,6 +73,8 @@ const ProductItem: FC<ProductItemProps> = ({
         >
           <Typography variant="h4">{`${price}$`}</Typography>
           <IconButton
+            data-pid={id}
+            onClick={handleAddProductToCart}
             sx={{
               padding: 0,
             }}

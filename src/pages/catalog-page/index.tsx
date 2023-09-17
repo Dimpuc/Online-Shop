@@ -3,13 +3,17 @@ import { ProductsList } from "../../components/products-list";
 import { FilterSidebar } from "../../components/filter-sidebar";
 import { CastomLoader } from "../../components/loader";
 import { useProduct } from "../../providers/ProductsProvider";
+import { useLoader } from "../../service/hooks/useLoader";
 
 const CatalogPage = () => {
   const { products } = useProduct();
+  const { component, loading } = useLoader();
+
+  console.log(loading);
 
   return (
     <>
-      {!products.length ? (
+      {loading ? (
         <Box
           sx={{
             display: "flex",
@@ -18,7 +22,7 @@ const CatalogPage = () => {
             height: "60vh",
           }}
         >
-          <CastomLoader />
+          {component()}
         </Box>
       ) : (
         <Grid
