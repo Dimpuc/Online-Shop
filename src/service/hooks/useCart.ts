@@ -60,7 +60,11 @@ const useCreateCart = () => {
     });
   };
 
-  const updateCartRequset = ({ id, pid, cartID }: UpdateCartRequsetProps) => {
+  const updateCartRequset = ({
+    id,
+    pid,
+    cartID = Number(userCart?.id),
+  }: UpdateCartRequsetProps) => {
     if (!userCart) return;
     onOpenLoaderWithbackdrop();
 
