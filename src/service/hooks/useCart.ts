@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { ProductType, UserCartInterface } from "../../types/products.type";
 import { useProduct } from "../../providers/ProductsProvider";
-import { useLoader } from "./useLoader";
 import { cartActions } from "../requset-service/cart-actions";
+import { useLoader } from "../../providers/LoaderProvider";
 
 type RequestBody = {
   id: number;
@@ -40,10 +40,10 @@ const prepareRequestBody = ({
 const useCreateCart = () => {
   const [userCart, setUserCart] = useState<UserCartInterface | null>(null);
   const { products } = useProduct();
-  const { onLoad, onFinishLoad } = useLoader();
+  const { onOpenLoaderWithbackdrop, onCloseLoaderWithbackdrop } = useLoader();
 
   const createCartRequset = ({ id, pid }: RequestBody) => {
-    onLoad();
+    onOpenLoaderWithbackdrop();
 
     const body = prepareRequestBody({
       id,
@@ -55,13 +55,14 @@ const useCreateCart = () => {
     cartActions.createCart(body).then((res) => {
       if (res) {
         setUserCart(res);
-        onFinishLoad();
+        onCloseLoaderWithbackdrop();
       }
     });
   };
 
   const updateCartRequset = ({ id, pid, cartID }: UpdateCartRequsetProps) => {
     if (!userCart) return;
+    onOpenLoaderWithbackdrop();
 
     const quantity = userCart.products.find((p) => p.id === pid)?.quantity;
 
@@ -94,6 +95,7 @@ const useCreateCart = () => {
               products: updateProducts,
             };
           });
+          onCloseLoaderWithbackdrop();
         }
       });
     } else {
@@ -109,6 +111,7 @@ const useCreateCart = () => {
                 products: [...prev?.products, ...res.products],
               };
             });
+            onCloseLoaderWithbackdrop();
           }
         })
         .catch(console.error);
