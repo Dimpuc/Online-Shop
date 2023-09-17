@@ -2,18 +2,14 @@ import { Box, Grid } from "@mui/material";
 import { ProductsList } from "../../components/products-list";
 import { FilterSidebar } from "../../components/filter-sidebar";
 import { CastomLoader } from "../../components/loader";
-import { useProduct } from "../../providers/ProductsProvider";
-import { useLoader } from "../../service/hooks/useLoader";
+import { useLoader } from "../../providers/LoaderProvider";
 
 const CatalogPage = () => {
-  const { products } = useProduct();
-  const { component, loading } = useLoader();
-
-  console.log(loading);
+  const { openLoader } = useLoader();
 
   return (
     <>
-      {loading ? (
+      {openLoader ? (
         <Box
           sx={{
             display: "flex",
@@ -22,7 +18,7 @@ const CatalogPage = () => {
             height: "60vh",
           }}
         >
-          {component()}
+          <CastomLoader />
         </Box>
       ) : (
         <Grid

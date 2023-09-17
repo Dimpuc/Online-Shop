@@ -7,17 +7,20 @@ import { StrictMode } from "react";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./assets/theme/index.ts";
 import { CartProvider } from "./providers/CartProvider.tsx";
+import { LoaderProvider } from "./providers/LoaderProvider.tsx";
 
 const app = (
   <StrictMode>
     <ThemeProvider theme={theme}>
-      <ProductProvider>
-        <CartProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </CartProvider>
-      </ProductProvider>
+      <LoaderProvider>
+        <ProductProvider>
+          <CartProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </CartProvider>
+        </ProductProvider>
+      </LoaderProvider>
     </ThemeProvider>
   </StrictMode>
 );

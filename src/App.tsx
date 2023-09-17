@@ -6,6 +6,7 @@ import { ContactsPage } from "./pages/contacts-page";
 import { NotFoundPage } from "./pages/not-found-page";
 import { paths } from "./service/route-service/paths";
 import { CatalogPage } from "./pages/catalog-page";
+import { LoaderWithBackdrop } from "./components/loader/loader-with-backdrop";
 
 function App() {
   const { HomePath, ContactsPath, AbouteUsPath, NotFoundPath, CatalogPath } =
@@ -22,6 +23,7 @@ function App() {
           <Route path={NotFoundPath} element={<NotFoundPage />} />
         </Route>
       </Routes>
+      <LoaderWithBackdrop />
     </>
   );
 }

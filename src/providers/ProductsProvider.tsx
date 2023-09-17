@@ -8,6 +8,7 @@ import {
 } from "react";
 import { ProductType } from "../types/products.type";
 import { productActions } from "../service/requset-service/products-actions";
+import { useLoader } from "./LoaderProvider";
 
 interface ProductsProviderProps {
   children: ReactNode;
@@ -29,11 +30,14 @@ export const useProduct = () => useContext(ProductContext);
 const ProductProvider: FC<ProductsProviderProps> = ({ children }) => {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [categories, setCaregories] = useState<string[]>([]);
+  const { onOpenLoader, onCloseLoader } = useLoader();
 
   useEffect(() => {
+    onOpenLoader();
     productActions.fetchProducts().then((data) => {
       if (data) {
         setProducts(data);
+        onCloseLoader();
       }
     });
   }, []);
@@ -52,9 +56,11 @@ const ProductProvider: FC<ProductsProviderProps> = ({ children }) => {
     const categorie = e.currentTarget.value;
 
     if (categorie) {
+      onOpenLoader();
       productActions.fetchSpecificProducts(categorie).then((data) => {
         if (data) {
           setProducts(data);
+          onCloseLoader();
         }
       });
     }
