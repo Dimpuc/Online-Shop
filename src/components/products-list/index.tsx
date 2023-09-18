@@ -3,7 +3,7 @@ import { useProduct } from "../../providers/ProductsProvider";
 import { ProductType } from "../../types/products.type";
 import { ProductItem } from "./product-item";
 
-const ProductsList = () => {
+ const ProductsList = () => {
   const { products } = useProduct();
 
   return (
@@ -44,4 +44,4 @@ const ProductsList = () => {
   );
 };
 
-export { ProductsList };
+export default ProductsList;
