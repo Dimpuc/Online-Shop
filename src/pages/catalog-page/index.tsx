@@ -6,6 +6,8 @@ import { CastomLoader } from "../../components/loader";
 import { useLoader } from "../../providers/LoaderProvider";
 import ProductsList from "../../components/products-list";
 
+const ProductsList = lazy(() => import("../../components/products-list"));
+
 const CatalogPage = () => {
   const { openLoader } = useLoader();
 
